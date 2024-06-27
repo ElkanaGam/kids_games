@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Welcome!</h1>
+  <p>Which one would you like to choose?</p>
+  <div class="button-container">
+    <button onclick="goToGame('S')">ש / ס</button>
+    <button onclick="goToGame('G')">ר / ה</button>
+    <button onclick="goToGame('R')">ג / ק </button>
+  </div>
+
+  <script>
+    function goToGame(choice) {
+      window.location.href = 'game.html?choice=' + choice;
+    }
+  </script>
+</body>
+</html>

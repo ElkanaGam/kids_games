@@ -1,0 +1,9 @@
+24.10.23
+
+
+exist 
+- creat collection for new therapist - upsert
+- add patient - not protected enough (can add same p more than one) -limit permission
+
+adapt 
+- retreive data

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draggable Images in Cells</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        img {
+            width: 100%; /* Make images fill the cell */
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td id="cell1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <img id="img1" src="orange.png" alt="Image 1" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+            </td>
+            <td id="cell2" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <img id="img2" src="green.png" alt="Image 2" draggable="true" ondragstart="drag(event)">
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            var draggedImage = document.getElementById(data);
+
+            // Check if the drop target is a table cell
+            if (true) {
+                // Append the dragged image to the cell
+                console.log("dropped")
+                ev.target.appendChild(draggedImage);
+            }
+        }
+    </script>
+</body>
+</html>

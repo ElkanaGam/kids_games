@@ -1,0 +1,52 @@
+lets puild curd API:
+the db is mongo based. every collection has name - therapist name
+every collection at the cration contain seven records for every weekday
+
+updating the collection means to insert patient object to one of the week-days
+where patient object is a dict in the form :
+
+{patient_name:name
+             patient_id:id}
+             patient_hmo:hmo}
+
+
+please supply one python file to handle the dbwith the function:
+create_collection(therpist_name):
+    '''create new collection '''
+
+
+
+
+add_patient(therapist, day, patient_name, patient_name, patient_name):
+    '''get collection and day and insert the other 3 parameters to the collection 
+    in the apropriate day'''
+    
+    
+
+
+remove_patient(therapist, p_name, p_id, p_hmo):
+    get collection by therapist and patient_name and remove him from the
+    day it is appear, if not apear alert in aome print
+    
+
+
+get_therapist_weekly(therapist_name):
+   '''get collection by therapist_name name and retrun his 
+   weekly schedule'''
+
+get_therapist_list_for_day(therapist_name, day):
+     '''get collection by therapist_name name and day retrun this day list of 
+     patients only schedule'''
+
+create also API server to handle the following endpoints
+using the above functions
+
+
+API:
+
+POST /therapist
+PUT /therapist/{patient}
+DELETE /therapist/{patient}
+
+GET /therapist
+GET /therapist/{day}

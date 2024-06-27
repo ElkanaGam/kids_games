@@ -1,0 +1,146 @@
+.container {
+    display: flex;
+    height: 100vh;
+  }
+
+  .hold {
+    background-color: black;
+  }
+  
+  .active {
+    background-color: aqua;
+  }
+  
+
+  .box1 {
+    flex: 1;
+    background-color: lightblue;
+  }
+
+  .box2 {
+    flex: 2;
+    background-color: lightcoral;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 columns */
+    grid-template-rows: repeat(5, 1fr); /* 5 rows */
+    gap: 5px; /* Gap between cells */
+    padding: 10px; /* Padding for the grid */
+  }
+
+  .cell {
+    border: 2px solid black;
+    /* border-radius: 8px; */
+    cursor: pointer; /* Adding cursor style for indication */
+  }
+
+  .sub_cell0 {
+    height: 50%;
+    border-radius: 0px;
+    background-color: transparent;
+  }
+
+  .sub_cell1{
+    height: 50%;
+    border-radius: 0px;
+    background-color: transparent;
+  }
+
+  .trans {
+    border: none;
+  }
+
+    
+  img {
+    width: 40%;
+    margin: 2px;
+  }
+
+  body {
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+      /* margin: 50px; */
+  }
+  
+  
+  
+    h1 {
+      color: #333;
+    }
+    
+    .button-container {
+      margin-top: 40px;
+      display: inline-grid;
+      font-size: 20px;
+    }
+    
+    button {
+      padding: 10px 20px;
+      margin: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    
+    button:hover {
+      background-color: #0056b3;
+    }
+    
+  
+  .container {
+    display: flex;
+  }
+  
+  .column {
+    width: 100px;
+    /* height: 400px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: blue;
+    margin: 5px;
+  }
+  
+  /* Media query for mobile devices */
+  @media only screen and (max-width: 768px) {
+    .container {
+          align-items: center;
+    }
+  
+    .column {
+      height: auto;
+      margin-bottom: 20px;
+    }
+  
+    .circle {
+      width: 50px;
+      height: 50px;
+    }
+  }
+  
+  
+  .column-image {
+      width: 80px; /* Adjust the width of the image */
+      height: 80px; /* Adjust the height of the image */
+      display: block;
+      margin: 0 auto;
+    }
+    
+  
+  /* CSS */
+  
+    

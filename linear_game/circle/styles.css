@@ -1,0 +1,16 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0; /* Optional: Set a background color for the body */
+  }
+  
+  .circle {
+    width: 5rem; /* Set a width using 'rem' units */
+    height: 5rem; /* Set a height using 'rem' units */
+    border-radius: 50%;
+    background-color: blue;
+  }
+  

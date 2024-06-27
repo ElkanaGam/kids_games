@@ -1,0 +1,83 @@
+from pymongo import MongoClient
+
+
+uri = "mongodb+srv://elkana1234:Hv4iD5Z3x60ixeuW@hmo.st6jfjf.mongodb.net/?retryWrites=true&w=majority"
+DB_NAME = "hmo_test"
+
+class MongoServer:
+    def __init__(self, param_a, param_b):
+        self.param_a = param_a
+        self.param_b = param_b
+        self.client = self.initialize_mongodb()
+        self.schedule_collection = self.client[param_b]["schedules"]
+
+    def initialize_mongodb(self):
+        try:
+            # Create a MongoDB client with the specified parameters
+            client = MongoClient(self.param_a)
+            return client
+        except Exception as e:
+            print(f"Error initializing MongoDB server: {str(e)}")
+            return None
+
+    def store_weekly_schedule(self, person_name, weekly_schedule):
+        try:
+            # Define the document to insert or update
+            schedule_document = {
+                "name": person_name,
+                "schedule": weekly_schedule
+            }
+            
+            # Use the person's name as a unique identifier
+            filter_query = {"name": person_name}
+            
+            # Upsert the document (insert if it doesn't exist, update if it does)
+            self.schedule_collection.update_one(filter_query, {"$set": schedule_document}, upsert=True)
+            print(f"Schedule for {person_name} stored successfully.")
+        except Exception as e:
+            print(f"Error storing schedule: {str(e)}")
+
+    def remove_schedule_entry(self, person_name, day, entry_name):
+        try:
+            # Use the person's name as a unique identifier
+            filter_query = {"name": person_name}
+            
+            # Pull (remove) the specific schedule entry for the given day
+            self.schedule_collection.update_one(filter_query, {"$pull": {"schedule." + day: {"name": entry_name}}})
+            print(f"Removed entry '{entry_name}' for {person_name} on {day}.")
+        except Exception as e:
+            print(f"Error removing schedule entry: {str(e)}")
+
+    def add_schedule_entry(self, person_name, day, name, _id, org):
+        try:
+            # Check if any of the required details are missing
+            if not name or not _id or not org:
+                print("One of the details (name, id, org) is missing.")
+                return False
+            
+            # Use the person's name as a unique identifier
+            filter_query = {"name": person_name}
+            
+            # Add the new schedule entry to the specified day
+            new_entry = {"name": name, "id": _id, "org": org}
+            self.schedule_collection.update_one(filter_query, {"$push": {"schedule." + day: new_entry}})
+            print(f"Added entry '{name}' for {person_name} on {day}.")
+            return True
+        except Exception as e:
+            print(f"Error adding schedule entry: {str(e)}")
+            return False
+
+# Example usage:
+param_a = "mongodb+srv://elkana1234:Hv4iD5Z3x60ixeuW@hmo.st6jfjf.mongodb.net/?retryWrites=true&w=majority"  # MongoDB connection URL
+# param_b = {"serverSelectionTimeoutMS": 5000}  # MongoDB client options
+param_b = "hmo_test"
+
+mongo_instance = MongoServer(param_a, param_b)
+
+person_name = "edi"
+day_to_add_to = "Monday"
+name_to_add = "Meeting 3"
+id_to_add = "3"
+org_to_add = "Company C"
+
+mongo_instance.add_schedule_entry(person_name, day_to_add_to, name_to_add, id_to_add, org_to_add)
